@@ -12,6 +12,9 @@ def configure_routes(app):
         API_KEY = os.environ['API_KEY']
         city = request.args.get('city')  # city name passed as argument
 
+        if 1:
+            pass
+
         # call API and convert response into Python dictionary
         url = f'http://api.weatherapi.com/v1/current.json?q={city}&key={API_KEY}'
         response = requests.get(url).json()
