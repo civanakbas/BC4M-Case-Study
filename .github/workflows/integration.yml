@@ -21,6 +21,8 @@ jobs:
   
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag bc4m/case:1.0
+    - name: Install requirements
+      run: pip install -r requirements.txt
     - name: Install pytest
       run: pip install pytest
     - name: Run pytest
