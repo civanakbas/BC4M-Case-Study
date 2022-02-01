@@ -1,17 +1,18 @@
 import requests
 import os
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from dotenv import load_dotenv
+from flask_api import status
 
 load_dotenv()
 
 app = Flask(__name__)
 
 
-@app.route('/temperature/city')
+@app.route('/temperature', methods=['GET'])
 def search_city():
     API_KEY = os.environ['API_KEY']
-    city = request.args.get('q')  # city name passed as argument
+    city = request.args.get('city')  # city name passed as argument
 
     # call API and convert response into Python dictionary
     url = f'http://api.weatherapi.com/v1/current.json?q={city}&key={API_KEY}'
@@ -20,14 +21,20 @@ def search_city():
     current_temperature = response.get('current', {}).get('temp_c')
 
     if current_temperature:
-        return f'Current temperature of {city.title()} is {current_temperature} &#8451;'
+        temp = {city.title(): current_temperature}
+        return jsonify(temp)
     else:
-        return f'Error getting temperature for {city.title()}'
+        return jsonify({"message": "Internal Server Error"})
 
+@app.route('/',methods=['POST'])
+@app.route('/temperature', methods=['POST'])
+def error():
+    return jsonify({"message":"The method is not allowed for the requested URL."}), status.HTTP_405_METHOD_NOT_ALLOWED
 
 @app.route('/')
 def index():
-    return '<h1>Welcome to weather app</h1>'
+    name = {"firstname":"civan","lastname":"akbas"}
+    return jsonify(name)
 
 
 if __name__ == '__main__':
