@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      API_KEY : ${{secrets.WEATHER_KEY}}
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag bc4m/case:1.0
+      
+      
+      
