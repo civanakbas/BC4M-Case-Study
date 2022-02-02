@@ -6,6 +6,7 @@ from flask_api import status
 
 load_dotenv()
 
+
 def configure_routes(app):
     @app.route('/temperature', methods=['GET'])
     def search_city():
@@ -24,12 +25,13 @@ def configure_routes(app):
         else:
             return jsonify({"message": "Internal Server Error"})
 
-    @app.route('/',methods=['POST'])
+    @app.route('/', methods=['POST'])
     @app.route('/temperature', methods=['POST'])
     def error():
-        return jsonify({"message":"The method is not allowed for the requested URL."}), status.HTTP_405_METHOD_NOT_ALLOWED
+        return jsonify({"message": "The method is not allowed for the requested URL."}
+                       ), status.HTTP_405_METHOD_NOT_ALLOWED
 
     @app.route('/')
     def index():
-        name = {"firstname":"civan","lastname":"akbas"}
+        name = {"firstname": "civan", "lastname": "akbas"}
         return jsonify(name)
