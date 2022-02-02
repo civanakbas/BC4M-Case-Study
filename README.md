@@ -1,3 +1,5 @@
+![Tests](https://github.com/civanakbas/BC4M-Case-Study/actions/workflows/integration.yml/badge.svg)
+
 # Instructions For Docker File
 
 Run the commands

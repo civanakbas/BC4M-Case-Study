@@ -12,7 +12,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [ubuntu-latest, window-latest]
+        os: [ubuntu-latest]
         python-version: ['3.7', '3.8', '3.9', '3.10']
     env:
       API_KEY : ${{secrets.WEATHER_KEY}}
