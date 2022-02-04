@@ -1,34 +1,32 @@
-# name: Tests
+ name: Tests
 
-# on:
-#   pull_request:
-#     branches: [ main ]
-#   push:
-#     branches: [ test ]
+ on:
+   pull_request:
+     branches: [ main ]
 
-# jobs:
-#   test:
+ jobs:
+   test:
 
-#     runs-on: ${{matrix.os}}
-#     strategy:
-#       matrix:
-#         os: [ubuntu-latest]
-#         python-version: ['3.7', '3.8', '3.9', '3.10']
-#     env:
-#       API_KEY : ${{secrets.WEATHER_KEY}}
+     runs-on: ${{matrix.os}}
+     strategy:
+       matrix:
+         os: [ubuntu-latest]
+         python-version: ['3.7', '3.8', '3.9', '3.10']
+     env:
+       API_KEY : ${{secrets.WEATHER_KEY}}
 
-#     steps:
-#     - uses: actions/checkout@v2
-#     - name: Set up Python ${{ matrix.python-version }}
-#       uses: actions/setup-python@v2
-#       with:
-#         python-version: ${{ matrix.python-version}}
-  
-#     - name: Build the Docker image
-#       run: docker build . --file Dockerfile --tag bc4m/case:1.0
-#     - name: Install requirements
-#       run: pip install -r requirements.txt
-#     - name: Install pytest
-#       run: pip install pytest
-#     - name: Run pytest
-#       run: pytest
+     steps:
+     - uses: actions/checkout@v2
+     - name: Set up Python ${{ matrix.python-version }}
+       uses: actions/setup-python@v2
+       with:
+         python-version: ${{ matrix.python-version}}
+ 
+     - name: Build the Docker image
+       run: docker build . --file Dockerfile --tag bc4m/case:1.0
+     - name: Install requirements
+       run: pip install -r requirements.txt
+     - name: Install pytest
+       run: pip install pytest
+     - name: Run pytest
+       run: pytest
