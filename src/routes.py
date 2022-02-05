@@ -19,10 +19,13 @@ def configure_routes(app):
 
         current_temperature = response.get("current", {}).get("temp_c")
 
-        if current_temperature:
-            temp = {city.title(): current_temperature}
-            return jsonify(temp)
-        else:
+        try:
+            if current_temperature:
+                temp = {city.title(): current_temperature}
+                return jsonify(temp)
+            else:
+                return jsonify({"message": "Internal Server Error"})
+        except AttributeError:
             return jsonify({"message": "Internal Server Error"})
 
     @app.route("/", methods=["POST"])
