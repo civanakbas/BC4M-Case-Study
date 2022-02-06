@@ -7,6 +7,7 @@
 Run the commands
 ```
 git clone https://github.com/civanakbas/BC4M-Case-Study.git
+cd BC4M-Case-Study
 docker build --tag bc4m/case:1.0 .
 docker run -p 5000:5000 -e API_KEY bc4m/case:1.0
 ```
