@@ -22,3 +22,17 @@ Visit the deployed site on [heroku](https://bc4m-case-study.herokuapp.com/).
 Example call: https://bc4m-case-study.herokuapp.com/temperature?city=mugla
 
 Note: The site may take a bit of time to load since the free tier dynos on Heroku sleeps after 30 mins of inactivity.
+
+# Details
+
+## Code
+
+The API is developed using ```Flask```. There are some dummy tests written with ```pytest```. 
+
+## integration.yml
+
+The integration script runs when there is a pull request. It tests on ```ubuntu-latest``` with Python versions ``` 3.7, 3.8, 3.9, 3.10 ```. Builds the docker image and runs the tests with ```pytest```.
+
+## deploy.yml
+
+The deploy script runs when there is a push to the main branch. It has the same instructions with integration.yml file but it also deploys the app to ```heroku```.
