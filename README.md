@@ -9,13 +9,15 @@ Run the commands
 git clone https://github.com/civanakbas/BC4M-Case-Study.git
 cd BC4M-Case-Study
 docker build --tag bc4m/case:1.0 .
-docker run -p 5000:5000 -e API_KEY bc4m/case:1.0
+docker run -p 5000:5000 -e API_KEY=$API_KEY bc4m/case:1.0
 ```
 and open [localhost:5000](http://localhost:5000/) on your browser.
 
-You can use the api key I sent you in the email.
+You can use the API key I sent you in the email.
 
-or visit the deployed site on [heroku](https://bc4m-case-study.herokuapp.com/).
+# Heroku
+
+Visit the deployed site on [heroku](https://bc4m-case-study.herokuapp.com/).
 
 Example call: https://bc4m-case-study.herokuapp.com/temperature?city=mugla
 
